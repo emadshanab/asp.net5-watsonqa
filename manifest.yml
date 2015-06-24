@@ -1,0 +1,12 @@
+---
+declared-services: 
+  sample-aspnet5-watsonqa-question_and_answer: 
+    label: question_and_answer 
+    plan: question_and_answer_free_plan 
+applications:
+- name: sample-aspnet5-watsonqa
+  random-route: true
+  memory: 256M
+  services:
+  - sample-aspnet5-watsonqa-question_and_answer
+  buildpack: https://github.com/cloudfoundry-community/asp.net5-buildpack
