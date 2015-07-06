@@ -42,8 +42,6 @@ namespace wqa.Controllers
 
             try
             {
-                System.Net.ServicePointManager.ServerCertificateValidationCallback += (s, ce, ca, p) => true;
-
                 Console.WriteLine("URL:: " + ws.url);
                 RequestManager rm = new RequestManager();
                 HttpWebResponse rep = rm.SendPOSTRequest(ws.url, rm.GetJsonString(qaw.question), ws.userid, ws.password, false);
