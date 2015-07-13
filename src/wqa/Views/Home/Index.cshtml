@@ -1,0 +1,60 @@
+﻿@model wqa.Models.QAWatson
+@{
+    Layout = null;
+}
+<head>
+    <title>ASP.NET 5 Watson QA Starter Application</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+
+    <link rel="stylesheet" href="../Content/style.css">
+</head>
+<body>
+    <div class="leftHalf">
+        <img class="newappIcon" src="../Images/newapp-icon.png">
+        <h1>
+            Welcome to the <span class="blue">Question Answer ASP.NET 5 Application</span> on Bluemix!
+        </h1>
+        <p class="description">
+            The IBM Watson Question Answer (QA) service provides an API,
+            referred to as the QAAPI, that enables you to add the power of the
+            IBM Watson cognitive computing system to your application. With
+            this service, you can connect to Watson, post questions, and
+            receive responses that you can use in your application.
+        </p>
+    </div>
+    <div class="rightHalf">
+        <header>
+            <div class="title">
+                Try the Watson Question Answer service
+            </div>
+        </header>
+        <br />
+        <section>
+            @using (Html.BeginForm("QAWatsonRedirect", "Home", FormMethod.Post, null))
+            {
+                @Html.ValidationSummary(true)
+                <p>
+                    Travel question @Html.TextBoxFor(model => model.question, new { @class = "inputBox" }) <input type="submit" value="Ask Watson" />
+                </p>
+                <br />
+                if (Model.id != null)
+                {
+                    var i = 0;
+                    for (i = 0; i < Model.id.Length; i++)
+                    {
+                        <div class="well">
+                            <p>
+                                @Html.DisplayFor(model => Model.text[i])
+                                <br /><br />
+                                Confidence: @Html.DisplayFor(model => Model.confidence[i])
+                            </p>
+                        </div>
+                    }
+                }
+            }
+        </section>
+    </div>
+</body>
